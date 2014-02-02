@@ -155,8 +155,12 @@ class Gitlab::Client
     # @param  [Integer, String] project The ID or name of a project.
     # @param  [String] url The hook URL.
     # @return [Gitlab::ObjectifiedHash] Information about added hook.
-    def add_project_hook(project, url)
-      post("/projects/#{project}/hooks", :body => {:url => url})
+    def add_project_hook(project, hook_specification = nil, url)
+      if hook_specification == nil
+        post("/projects/#{project}/hooks", :body => {:url => url})
+      else
+        post("/projects/#{project}/hooks?#{hook_specification}", :body => {:url => url})
+      end
     end
 
     # Updates a project hook URL.
