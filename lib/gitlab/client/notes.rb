@@ -102,5 +102,30 @@ class Gitlab::Client
     def create_snippet_note(project, snippet, body)
       post("/projects/#{project}/snippets/#{snippet}/notes", :body => {:body => body})
     end
+
+    # Gets list of merge_request notes.
+    #
+    # @example
+    #   Gitlab.merge_request_notes(5, 11)
+    #
+    # @param [Integer/String] project The ID/namespace%2Fproject_name of a project.
+    # @param [Integer] snippet The ID of a merge_request.
+    # @return [Gitlab::ObjectifiedHash]
+    def merge_request_notes(project, merge_request)
+      get("/projects/#{project}/merge_requests/#{merge_request}/notes")
+    end
+
+    # Gets a single merge_request note.
+    #
+    # @example
+    #   Gitlab.merge_request_note(5, 11, 3)
+    #
+    # @param [Integer/String] project The ID/namespace%2Fproject_name of a project.
+    # @param [Integer] snippet The ID of a merge_request.
+    # @param [Integer] id The ID of an note.
+    # @return [Gitlab::ObjectifiedHash]
+    def merge_request_note(project, merge_request, note_id)
+      get("/projects/#{project}/merge_requests/#{merge_request}/notes/#{note_id}")
+    end
   end
 end
