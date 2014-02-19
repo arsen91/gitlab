@@ -108,8 +108,8 @@ class Gitlab::Client
     # @example
     #   Gitlab.merge_request_notes(5, 11)
     #
-    # @param [Integer/String] project The ID/namespace%2Fproject_name of a project.
-    # @param [Integer] snippet The ID of a merge_request.
+    # @param [Integer/String] project. The ID/namespace%2Fname of a project.
+    # @param [Integer] merge_request. The ID of merge_request.
     # @return [Gitlab::ObjectifiedHash]
     def merge_request_notes(project, merge_request)
       get("/projects/#{project}/merge_requests/#{merge_request}/notes")
@@ -120,9 +120,9 @@ class Gitlab::Client
     # @example
     #   Gitlab.merge_request_note(5, 11, 3)
     #
-    # @param [Integer/String] project The ID/namespace%2Fproject_name of a project.
-    # @param [Integer] snippet The ID of a merge_request.
-    # @param [Integer] id The ID of an note.
+    # @param [Integer/String] project. The ID/namespace%2Fname of a project.
+    # @param [Integer] merge_request. The ID of merge_request.
+    # @param [Integer] note. The id of a note.
     # @return [Gitlab::ObjectifiedHash]
     def merge_request_note(project, merge_request, note_id)
       get("/projects/#{project}/merge_requests/#{merge_request}/notes/#{note_id}")
